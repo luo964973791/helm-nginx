@@ -142,7 +142,7 @@ volumeMounts:
 volumes:
   - name: vol-html
     persistentVolumeClaim:
-      claimName: demo-my-nginx-html-data
+      claimName: helm-nginx-my-nginx-html-data
   - name: vol-logs
     persistentVolumeClaim:
-      claimName: demo-my-nginx-log-data
+      claimName: helm-nginx-my-nginx-log-data
