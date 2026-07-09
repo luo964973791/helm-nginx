@@ -114,7 +114,9 @@ volumes:
 #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
+volumeMounts:
+  - name: nginx-html-storage
+    mountPath: /usr/share/nginx/html
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
