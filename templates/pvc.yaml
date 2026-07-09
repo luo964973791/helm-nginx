@@ -1,11 +1,17 @@
+{{- if .Values.persistence.enabled }}
+{{- range .Values.persistence.claims }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nginx-html-pvc
+  name: {{ include "my-nginx.fullname" $ }}-{{ .name }}
+  namespace: {{ $.Release.Namespace }}
 spec:
   accessModes:
-    - ReadWriteOnce
-  storageClassName: local-path
+    - {{ .accessMode | default "ReadWriteOnce" | quote }}
+  storageClassName: {{ .storageClass | default "local-path" | quote }}
   resources:
     requests:
-      storage: 10Gi
+      storage: {{ .size | default "10Gi" | quote }}
+---
+{{- end }}
+{{- end }}
